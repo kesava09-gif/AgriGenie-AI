@@ -2,6 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 import requests
 from PIL import Image
+from fpdf import FPDF
 st.set_page_config(
     page_title="AgriGenie-AI",
     page_icon="🌱",
