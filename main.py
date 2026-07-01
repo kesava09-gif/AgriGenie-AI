@@ -133,7 +133,18 @@ if crop:
         st.success("Provide irrigation based on soil moisture.")
 
 st.divider()
+st.header("🌿 Plant Disease Detection")
 
+leaf = st.file_uploader(
+    "Upload Plant Leaf Image",
+    type=["jpg", "jpeg", "png"]
+)
+
+if leaf:
+    st.image(leaf, caption="Uploaded Leaf", use_container_width=True)
+
+    if st.button("Detect Disease"):
+        st.info("🚧 Disease Detection module coming soon...")
 # ---------------- AI Assistant ----------------
 
 st.header("🤖 AI Farming Assistant")
