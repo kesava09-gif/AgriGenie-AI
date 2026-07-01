@@ -246,6 +246,29 @@ if farmer and crop and city:
     st.write(f"🌾 Crop : {crop}")
     st.write(f"🏙 City : {city}")
     st.write(f"🌍 Soil : {soil}")
+    pdf = FPDF()
+pdf.add_page()
+
+pdf.set_font("Arial", "B", 16)
+pdf.cell(0, 10, "AgriGenie-AI Report", ln=True)
+
+pdf.set_font("Arial", "", 12)
+pdf.cell(0, 10, f"Farmer: {farmer}", ln=True)
+pdf.cell(0, 10, f"Crop: {crop}", ln=True)
+pdf.cell(0, 10, f"City: {city}", ln=True)
+pdf.cell(0, 10, f"Soil: {soil}", ln=True)
+
+with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+    pdf.output(tmp.name)
+
+    with open(tmp.name, "rb") as f:
+        st.download_button(
+            "📄 Download Report",
+            f,
+            file_name="AgriGenie_Report.pdf",
+            mime="application/pdf"
+            )
+    
 
 st.divider()
 
