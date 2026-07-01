@@ -149,7 +149,10 @@ if leaf:
         else:
             image = Image.open(leaf)
 
-            prompt = """
+prompt = """
+...
+"""
+
 You are an agriculture expert.
 
 Identify:
