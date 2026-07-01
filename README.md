@@ -1,21 +1,50 @@
 # 🌱 AgriGenie-AI
 
-An AI-powered smart farming platform that helps farmers make better agricultural decisions using Artificial Intelligence.
+## AI Powered Smart Farming Assistant
+
+AgriGenie-AI is an AI-powered smart farming assistant developed using **Python, Streamlit, and Google Gemini AI** to help farmers make better agricultural decisions.
+
+---
 
 ## 🚀 Features
-- 🌦 Weather Information
-- 🌱 Crop Recommendation
-- 🤖 AI Farmer Assistant (Google Gemini)
-- 📊 Simple Farmer Dashboard
-- 🌍 Easy-to-use Interface
+
+- 🌾 Crop Recommendation
+- 🌦️ Live Weather Information
+- 💰 Crop Market Price
+- 🌱 Fertilizer Suggestion
+- 🌾 AI Yield Prediction
+- 💧 Irrigation Tips
+- 🌿 Plant Disease Detection (Gemini AI)
+- 🤖 AI Farming Assistant
+- 📄 PDF Report Generation
+- 🏛️ Government Schemes
+
+---
 
 ## 🛠️ Tech Stack
+
 - Python
 - Streamlit
-- Google Gemini API
+- Google Gemini AI
 - Pandas
-- NumPy
+- Requests
+- Pillow
+- FPDF
+
+---
+
+## ▶️ Live Demo
+
+https://agrigenie-ai-prfjqj3dh3zqppmzouzyca.streamlit.app/
+
+---
 
 ## 👨‍💻 Developer
+
 **M. Kesavanath**
-ECE Student
+
+ECE Student | AI & Embedded Systems Enthusiast
+
+---
+
+⭐ If you like this project, don't forget to Star this repository.
