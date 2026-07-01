@@ -5,13 +5,16 @@ import requests
 st.set_page_config(
     page_title="AgriGenie-AI",
     page_icon="🌱",
-    layout="wide"
+    layout="centered"
 )
 
 st.title("🌱 AgriGenie-AI")
 st.subheader("AI Powered Smart Farming Assistant")
 
-# Gemini API
+# ---------------- Gemini API ----------------
+
+gemini_ready = False
+
 try:
     api_key = st.secrets["GEMINI_API_KEY"]
     genai.configure(api_key=api_key)
@@ -20,12 +23,12 @@ try:
 except:
     gemini_ready = False
 
+# ---------------- Farmer Details ----------------
+
 st.header("👨‍🌾 Farmer Details")
 
 farmer = st.text_input("Farmer Name")
-
 crop = st.text_input("Crop Name")
-
 city = st.text_input("City")
 
 soil = st.selectbox(
@@ -40,22 +43,27 @@ soil = st.selectbox(
 
 st.divider()
 
+# ---------------- Crop Recommendation ----------------
+
 st.header("🌾 Crop Recommendation")
 
 if st.button("Recommend Crop"):
 
     if soil == "Black Soil":
-        st.success("✅ Recommended Crop : Cotton")
+        st.success("Recommended Crop : Cotton")
 
     elif soil == "Red Soil":
-        st.success("✅ Recommended Crop : Groundnut")
+        st.success("Recommended Crop : Groundnut")
 
     elif soil == "Clay Soil":
-        st.success("✅ Recommended Crop : Rice")
+        st.success("Recommended Crop : Rice")
 
     else:
-        st.success("✅ Recommended Crop : Watermelon")
+        st.success("Recommended Crop : Watermelon")
+
 st.divider()
+
+# ---------------- Weather ----------------
 
 st.header("🌦 Weather Information")
 
@@ -65,6 +73,7 @@ if st.button("Get Weather"):
         st.warning("Please enter city name")
 
     else:
+
         try:
             url = f"https://wttr.in/{city}?format=j1"
 
@@ -76,12 +85,14 @@ if st.button("Get Weather"):
 
             st.write(f"🌡 Temperature : {current['temp_C']} °C")
             st.write(f"💧 Humidity : {current['humidity']} %")
-            st.write(f"🌥 Condition : {current['weatherDesc'][0]['value']}")
+            st.write(f"☁ Condition : {current['weatherDesc'][0]['value']}")
 
         except:
             st.error("Unable to fetch weather")
 
 st.divider()
+
+# ---------------- Fertilizer ----------------
 
 st.header("🌱 Fertilizer Suggestion")
 
@@ -100,8 +111,10 @@ if crop:
 
     else:
         st.info("Use organic compost and soil testing before applying fertilizers.")
-      
+
 st.divider()
+
+# ---------------- Irrigation ----------------
 
 st.header("💧 Irrigation Tips")
 
@@ -121,6 +134,8 @@ if crop:
 
 st.divider()
 
+# ---------------- AI Assistant ----------------
+
 st.header("🤖 AI Farming Assistant")
 
 question = st.text_area("Ask your farming question")
@@ -129,27 +144,33 @@ if st.button("Ask AI"):
 
     if not gemini_ready:
         st.error("Gemini API Key not configured.")
+
     elif question:
+
         try:
             response = model.generate_content(question)
             st.success(response.text)
-        except Exception as e:
-            st.error(f"Error: {e}")
- st.divider()
 
-st.header("📊 Farm Summary")
+        except Exception as e:
+            st.error(f"Error : {e}")
+
+st.divider()
+
+# ---------------- Summary ----------------
+
+st.header("📋 Farm Summary")
 
 if farmer and crop and city:
+
     st.success("Farmer Details Saved Successfully!")
 
     st.write("### Summary")
     st.write(f"👨‍🌾 Farmer : {farmer}")
     st.write(f"🌾 Crop : {crop}")
-    st.write(f"🏙️ City : {city}")
+    st.write(f"🏙 City : {city}")
     st.write(f"🌍 Soil : {soil}")
 
 st.divider()
 
-st.markdown("---")
 st.caption("🌱 AgriGenie-AI Version 1.0")
-st.caption("Developed by M. Kesavanath")           
+st.caption("Developed by M. Kesavanath")
