@@ -144,7 +144,25 @@ if leaf:
     st.image(leaf, caption="Uploaded Leaf", use_container_width=True)
 
     if st.button("Detect Disease"):
-        st.info("🚧 Disease Detection module coming soon...")
+        image = Image.open(leaf)
+
+prompt = """
+You are an agriculture expert.
+
+Identify:
+1. Plant name
+2. Disease (if any)
+3. Disease severity
+4. Recommended pesticide
+5. Organic treatment
+6. Prevention tips
+
+Give the answer in simple English.
+"""
+
+response = model.generate_content([prompt, image])
+
+st.success(response.text)
 # ---------------- AI Assistant ----------------
 
 st.header("🤖 AI Farming Assistant")
