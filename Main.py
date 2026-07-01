@@ -55,3 +55,88 @@ if st.button("Recommend Crop"):
 
     else:
         st.success("✅ Recommended Crop : Watermelon")
+st.divider()
+
+st.header("🌦 Weather Information")
+
+if st.button("Get Weather"):
+
+    if city == "":
+        st.warning("Please enter city name")
+
+    else:
+        try:
+            url = f"https://wttr.in/{city}?format=j1"
+
+            data = requests.get(url).json()
+
+            current = data["current_condition"][0]
+
+            st.success("Weather Details")
+
+            st.write(f"🌡 Temperature : {current['temp_C']} °C")
+            st.write(f"💧 Humidity : {current['humidity']} %")
+            st.write(f"🌥 Condition : {current['weatherDesc'][0]['value']}")
+
+        except:
+            st.error("Unable to fetch weather")
+
+st.divider()
+
+st.header("🌱 Fertilizer Suggestion")
+
+if crop:
+
+    crop_lower = crop.lower()
+
+    if crop_lower == "rice":
+        st.info("Recommended Fertilizer : Urea")
+
+    elif crop_lower == "cotton":
+        st.info("Recommended Fertilizer : NPK 20-20-20")
+
+    elif crop_lower == "groundnut":
+        st.info("Recommended Fertilizer : Gypsum")
+
+    else:
+        st.info("Use organic compost and soil testing before applying fertilizers.")
+            elif crop_lower == "groundnut":
+        st.info("Recommended Fertilizer : Gypsum")
+
+    else:
+        st.info("Use organic compost and soil testing before applying fertilizers.")
+
+st.divider()
+
+st.header("💧 Irrigation Tips")
+
+if crop:
+
+    if crop_lower == "rice":
+        st.success("Keep field flooded with 2-5 cm water.")
+
+    elif crop_lower == "cotton":
+        st.success("Water every 7-10 days depending on weather.")
+
+    elif crop_lower == "groundnut":
+        st.success("Avoid excess watering during flowering.")
+
+    else:
+        st.success("Provide irrigation based on soil moisture.")
+
+st.divider()
+
+st.header("🤖 AI Farming Assistant")
+
+question = st.text_area("Ask your farming question")
+
+if st.button("Ask AI"):
+
+    if not gemini_ready:
+        st.error("Gemini API Key not configured.")
+    elif question:
+        try:
+            response = model.generate_content(question)
+            st.success(response.text)
+        except Exception as e:
+            st.error(f"Error: {e}")
