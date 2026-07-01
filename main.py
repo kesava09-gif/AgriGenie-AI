@@ -91,6 +91,25 @@ if st.button("Get Weather"):
             st.error("Unable to fetch weather")
 
 st.divider()
+st.divider()
+
+st.header("💰 Crop Market Price")
+
+if crop:
+
+    crop_lower = crop.lower()
+
+    if crop_lower == "rice":
+        st.success("💰 Market Price: ₹2300 - ₹2600 / Quintal")
+
+    elif crop_lower == "cotton":
+        st.success("💰 Market Price: ₹7200 - ₹8200 / Quintal")
+
+    elif crop_lower == "groundnut":
+        st.success("💰 Market Price: ₹5800 - ₹7000 / Quintal")
+
+    else:
+        st.info("Market price not available.")
 
 # ---------------- Fertilizer ----------------
 
@@ -115,9 +134,29 @@ if crop:
 st.divider()
 
 # ---------------- Irrigation ----------------
+st.divider()
 
+# 👇 PASTE AI YIELD CODE HERE
+
+st.header("🌾 AI Yield Prediction")
+
+if crop:
+    crop_lower = crop.lower()
+
+    if crop_lower == "rice":
+        st.success("🌾 Expected Yield: 25-35 Quintals / Acre")
+
+    elif crop_lower == "cotton":
+        st.success("🌾 Expected Yield: 8-12 Quintals / Acre")
+
+    elif crop_lower == "groundnut":
+        st.success("🌾 Expected Yield: 10-15 Quintals / Acre")
+
+    else:
+        st.info("Yield prediction not available.")
+
+st.divider()
 st.header("💧 Irrigation Tips")
-
 if crop:
 
     if crop_lower == "rice":
