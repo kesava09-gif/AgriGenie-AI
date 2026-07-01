@@ -158,7 +158,11 @@ if crop:
         st.info("Yield prediction not available.")
 
 st.divider()
+
+# ---------------- Irrigation ----------------
+
 st.header("💧 Irrigation Tips")
+
 if crop:
 
     if crop_lower == "rice":
@@ -174,12 +178,16 @@ if crop:
         st.success("Provide irrigation based on soil moisture.")
 
 st.divider()
+
+# ---------------- Plant Disease Detection ----------------
+
 st.header("🌿 Plant Disease Detection")
 
 leaf = st.file_uploader(
     "Upload Plant Leaf Image",
     type=["jpg", "jpeg", "png"]
 )
+
 if leaf:
 
     st.image(leaf, caption="Uploaded Leaf", use_container_width=True)
@@ -212,7 +220,9 @@ Give the answer in simple English.
 
             except Exception as e:
                 st.error(f"Error: {e}")
-    
+
+st.divider()
+
 # ---------------- AI Assistant ----------------
 
 st.header("🤖 AI Farming Assistant")
@@ -231,7 +241,7 @@ if st.button("Ask AI"):
             st.success(response.text)
 
         except Exception as e:
-            st.error(f"Error : {e}")
+            st.error(f"Error: {e}")
 
 st.divider()
 
@@ -243,36 +253,36 @@ if farmer and crop and city:
 
     st.success("Farmer Details Saved Successfully!")
 
-    st.write("### Summary")
     st.write(f"👨‍🌾 Farmer : {farmer}")
     st.write(f"🌾 Crop : {crop}")
-    st.write(f"🏙 City : {city}")
+    st.write(f"🏙️ City : {city}")
     st.write(f"🌍 Soil : {soil}")
+
     pdf = FPDF()
-pdf.add_page()
+    pdf.add_page()
 
-pdf.set_font("Arial", "B", 16)
-pdf.cell(0, 10, "AgriGenie-AI Report", ln=True)
+    pdf.set_font("Arial", "B", 16)
+    pdf.cell(0, 10, "AgriGenie-AI Report", ln=True)
 
-pdf.set_font("Arial", "", 12)
-pdf.cell(0, 10, f"Farmer: {farmer}", ln=True)
-pdf.cell(0, 10, f"Crop: {crop}", ln=True)
-pdf.cell(0, 10, f"City: {city}", ln=True)
-pdf.cell(0, 10, f"Soil: {soil}", ln=True)
+    pdf.set_font("Arial", "", 12)
+    pdf.cell(0, 10, f"Farmer: {farmer}", ln=True)
+    pdf.cell(0, 10, f"Crop: {crop}", ln=True)
+    pdf.cell(0, 10, f"City: {city}", ln=True)
+    pdf.cell(0, 10, f"Soil: {soil}", ln=True)
 
-with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
-    pdf.output(tmp.name)
+    pdf_file = "AgriGenie_Report.pdf"
+    pdf.output(pdf_file)
 
-    with open(tmp.name, "rb") as f:
+    with open(pdf_file, "rb") as f:
         st.download_button(
             "📄 Download Report",
-            f,
+            data=f,
             file_name="AgriGenie_Report.pdf",
             mime="application/pdf"
-            )
-    
+        )
 
 st.divider()
 
 st.caption("🌱 AgriGenie-AI Version 1.0")
 st.caption("Developed by M. Kesavanath")
+st.divider()
