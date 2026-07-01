@@ -5,3 +5,4 @@ Pillow
 fpdf
 pandas
 streamlit-mic-recorder
+deep-translator
