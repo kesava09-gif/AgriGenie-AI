@@ -4,3 +4,4 @@ requests
 Pillow
 fpdf
 pandas
+streamlit-mic-recorder
