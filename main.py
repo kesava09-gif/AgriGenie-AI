@@ -6,6 +6,8 @@ from fpdf import FPDF
 import tempfile
 import pandas as pd
 from streamlit_mic_recorder import mic_recorder
+from deep_translator import 
+GoogleTranslator
 st.set_page_config(
     page_title="AgriGenie-AI",
     page_icon="🌱",
@@ -238,6 +240,10 @@ st.divider()
 st.header("🤖 AI Farming Assistant")
 
 question = st.text_area("Ask your farming question")
+language = st.selectbox(
+    "🌐 Select Language",
+    ["English", "Telugu", "Hindi"]
+)
 audio = mic_recorder(
     start_prompt="🎤 Start Recording",
     stop_prompt="⏹ Stop Recording",
@@ -257,7 +263,15 @@ if st.button("Ask AI"):
 
         try:
             response = model.generate_content(question)
-            st.success(response.text)
+            answer = response.text
+
+if language == "Telugu":
+    answer = GoogleTranslator(source="auto", target="te").translate(answer)
+
+elif language == "Hindi":
+    answer = GoogleTranslator(source="auto", target="hi").translate(answer)
+
+st.success(answer)
 
         except Exception as e:
             st.error(f"Error: {e}")
