@@ -4,6 +4,8 @@ import requests
 from PIL import Image
 from fpdf import FPDF
 import tempfile
+import pandas as pd
+from streamlit_mic_recorder import mic_recorder
 st.set_page_config(
     page_title="AgriGenie-AI",
     page_icon="🌱",
@@ -236,6 +238,15 @@ st.divider()
 st.header("🤖 AI Farming Assistant")
 
 question = st.text_area("Ask your farming question")
+audio = mic_recorder(
+    start_prompt="🎤 Start Recording",
+    stop_prompt="⏹ Stop Recording",
+    key="voice"
+)
+
+if audio:
+    st.success("🎤 Voice recorded successfully!")
+    st.info("Voice support added. Speech-to-text integration can be connected here.")
 
 if st.button("Ask AI"):
 
