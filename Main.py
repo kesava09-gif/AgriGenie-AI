@@ -140,3 +140,21 @@ if st.button("Ask AI"):
             st.success(response.text)
         except Exception as e:
             st.error(f"Error: {e}")
+ st.divider()
+
+st.header("📊 Farm Summary")
+
+if farmer and crop and city:
+    st.success("Farmer Details Saved Successfully!")
+
+    st.write("### Summary")
+    st.write(f"👨‍🌾 Farmer : {farmer}")
+    st.write(f"🌾 Crop : {crop}")
+    st.write(f"🏙️ City : {city}")
+    st.write(f"🌍 Soil : {soil}")
+
+st.divider()
+
+st.markdown("---")
+st.caption("🌱 AgriGenie-AI Version 1.0")
+st.caption("Developed by M. Kesavanath")           
