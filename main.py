@@ -140,19 +140,18 @@ leaf = st.file_uploader(
     type=["jpg", "jpeg", "png"]
 )
 if leaf:
+
     st.image(leaf, caption="Uploaded Leaf", use_container_width=True)
 
     if st.button("Detect Disease"):
 
         if not gemini_ready:
             st.error("Gemini API Key not configured.")
+
         else:
             image = Image.open(leaf)
 
-prompt = """
-...
-"""
-
+            prompt = """
 You are an agriculture expert.
 
 Identify:
@@ -169,6 +168,7 @@ Give the answer in simple English.
             try:
                 response = model.generate_content([prompt, image])
                 st.success(response.text)
+
             except Exception as e:
                 st.error(f"Error: {e}")
     
