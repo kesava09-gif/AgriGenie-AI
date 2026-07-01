@@ -100,12 +100,7 @@ if crop:
 
     else:
         st.info("Use organic compost and soil testing before applying fertilizers.")
-            elif crop_lower == "groundnut":
-        st.info("Recommended Fertilizer : Gypsum")
-
-    else:
-        st.info("Use organic compost and soil testing before applying fertilizers.")
-
+      
 st.divider()
 
 st.header("💧 Irrigation Tips")
