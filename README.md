@@ -1,4 +1,9 @@
 # 🌱 AgriGenie-AI
+<p align="center">
+  <img src="banner.png" alt="AgriGenie-AI Banner" width="100%">
+</p>
+
+# 🌱 AgriGenie-AI
 
 ## AI Powered Smart Farming Assistant
 
