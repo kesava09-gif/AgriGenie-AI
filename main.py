@@ -6,8 +6,7 @@ from fpdf import FPDF
 import tempfile
 import pandas as pd
 from streamlit_mic_recorder import mic_recorder
-from deep_translator import 
-GoogleTranslator
+from deep_translator import GoogleTranslator
 st.set_page_config(
     page_title="AgriGenie-AI",
     page_icon="🌱",
