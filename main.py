@@ -228,4 +228,114 @@ Give the answer in simple English.
             st.error(f"Error: {e}")
 
 st.divider()
+# ---------------- AI Farming Assistant ----------------
+
+st.header("🤖 AI Farming Assistant")
+
+question = st.text_area("Ask your farming question")
+
+if st.button("Ask AI"):
+
+    if question == "":
+        st.warning("Please enter your question.")
+
+    else:
+
+        try:
+
+            prompt = f"""
+You are an expert agriculture assistant.
+
+Answer this farmer question in simple English:
+
+{question}
+"""
+
+            response = model.generate_content(prompt)
+
+            st.success(response.text)
+
+        except Exception as e:
+            st.error(f"Error: {e}")
+
+st.divider()
+
+# ---------------- Farm Summary ----------------
+
+st.header("📋 Farm Summary")
+
+if farmer and crop and city:
+
+    st.success("Farmer Details Saved Successfully!")
+
+    st.write(f"👨‍🌾 Farmer : {farmer}")
+    st.write(f"🌾 Crop : {crop}")
+    st.write(f"🏙️ City : {city}")
+    st.write(f"🌍 Soil : {soil}")
+
+    pdf = FPDF()
+    pdf.add_page()
+
+    pdf.set_font("Arial", "B", 16)
+    pdf.cell(0, 10, "AgriGenie-AI Report", ln=True)
+
+    pdf.set_font("Arial", "", 12)
+    pdf.cell(0, 10, f"Farmer: {farmer}", ln=True)
+    pdf.cell(0, 10, f"Crop: {crop}", ln=True)
+    pdf.cell(0, 10, f"City: {city}", ln=True)
+    pdf.cell(0, 10, f"Soil: {soil}", ln=True)
+
+    pdf_file = "AgriGenie_Report.pdf"
+    pdf.output(pdf_file)
+
+    with open(pdf_file, "rb") as f:
+        st.download_button(
+            "📄 Download Report",
+            data=f,
+            file_name="AgriGenie_Report.pdf",
+            mime="application/pdf"
+        )
+
+st.divider()
+
+st.caption("🌱 AgriGenie-AI Version 1.0")
+st.caption("Developed by M. Kesavanath")
+# ---------------- Government Schemes ----------------
+
+st.divider()
+
+st.header("🏛️ Government Schemes")
+
+scheme = st.selectbox(
+    "Select Scheme",
+    [
+        "PM-KISAN",
+        "Crop Insurance",
+        "Soil Health Card",
+        "Kisan Credit Card"
+    ]
+)
+
+if scheme == "PM-KISAN":
+    st.success("Eligible farmers receive ₹6000 per year.")
+
+elif scheme == "Crop Insurance":
+    st.success("Protects farmers from crop losses due to natural disasters.")
+
+elif scheme == "Soil Health Card":
+    st.success("Provides soil nutrient analysis and fertilizer suggestions.")
+
+elif scheme == "Kisan Credit Card":
+    st.success("Provides low-interest agricultural loans.")
+
+st.divider()
+
+# ---------------- App Footer ----------------
+
+st.markdown("---")
+st.markdown("## 🌱 Thank You")
+
+st.success("AgriGenie-AI is ready for Hackathon Demo 🚀")
+
+st.caption("Developed by M. Kesavanath")
 
