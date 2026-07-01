@@ -260,20 +260,19 @@ if st.button("Ask AI"):
 
     elif question:
 
-        try:
-            response = model.generate_content(question)
-            answer = response.text
+try:
+    response = model.generate_content(question)
+    answer = response.text
 
-if language == "Telugu":
-    answer = GoogleTranslator(source="auto", target="te").translate(answer)
+    if language == "Telugu":
+        answer = GoogleTranslator(source="auto", target="te").translate(answer)
+    elif language == "Hindi":
+        answer = GoogleTranslator(source="auto", target="hi").translate(answer)
 
-elif language == "Hindi":
-    answer = GoogleTranslator(source="auto", target="hi").translate(answer)
+    st.success(answer)
 
-st.success(answer)
-
-        except Exception as e:
-            st.error(f"Error: {e}")
+except Exception as e:
+    st.error(f"Error: {e}")  
 
 st.divider()
 
